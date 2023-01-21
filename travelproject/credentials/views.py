@@ -8,13 +8,13 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = auth.authenticate(username=username,password=password)
+        user = auth.authenticate(username=username, password=password)
 
         if user is not None:
-            auth.login(request,user)
+            auth.login(request, user)
             return redirect('/')
         else:
-            messages.info(request,'Invalid credentials')
+            messages.info(request, 'Invalid credentials')
             return redirect('login')
     return render(request, 'login.html')
 def register(request):
@@ -40,7 +40,7 @@ def register(request):
         else:
             messages.info(request, 'Password not matching.')
             return redirect('register')
-        return redirect('/')
+        return redirect('login')
     return render(request, "register.html")
 
 def logout(request):
